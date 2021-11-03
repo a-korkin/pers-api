@@ -1,6 +1,8 @@
+from logging import debug
 import uvicorn
 from fastapi import FastAPI
 from routers import persons
+from config import settings
 
 def create_app() -> FastAPI:
     app = FastAPI(
@@ -9,7 +11,7 @@ def create_app() -> FastAPI:
         openapi_url=None
     )
 
-    app.include_router(persons.router, prefix="/api")
+    app.include_router(persons.router, prefix=settings.API_V1)
     return app
 
 app = create_app()    
